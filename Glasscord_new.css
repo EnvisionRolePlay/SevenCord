@@ -1,0 +1,122 @@
+    box-shadow: var(--glass-shadow);
+}
+
+button.volumeButton__2d263.button__201d5.lookBlank__201d5.colorBrand__201d5.grow__201d5 {
+    box-shadow: none;
+}
+
+button.rightTrayIcon_cb9592.button__201d5.lookBlank__201d5.colorBrand__201d5.grow__201d5 {
+    box-shadow: none;
+}
+
+.container__55c99 {
+    background-color: transparent;
+    border: none;
+    border-radius: 20px;
+    box-shadow: var(--glass-shadow);
+    backdrop-filter: blur(var(--blur-strength)) brightness(var(--brightness-level));
+}
+
+.focused__55c99 {
+    background-color: transparent;
+}
+
+.bannerVisible_f37cb1 .headerEllipseForeground_f37cb1 {
+    background: transparent;
+}
+
+.vc-card-base {
+    background: transparent;
+    border-radius: 20px;
+    box-shadow: var(--glass-shadow);
+}
+
+.cardPrimary__73069,
+.cardPrimary__73069.editable__73069 {
+    background-color: transparent;
+}
+
+.content_e9e3ed,
+.contentHeader_e9e3ed {
+    background: transparent;
+}
+
+.item_caf372.active_caf372 {
+    background-color: #ffffff17;
+    box-shadow: var(--glass-shadow);
+    border-radius: 15px;
+}
+
+.item_caf372 {
+    transition: transform 0.3s ease, box-shadow 0.3s ease !important;
+    margin-right: 10px;
+    border-radius: 15px;
+}
+
+.item_caf372.active_caf372,
+.item_caf372:hover {
+    background-color: transparent;
+    box-shadow: var(--glass-shadow);
+    border-radius: 15px;
+    transform: scale(1.03);
+}
+
+.scrim__40128 {
+    background-color: transparent;
+}
+
+.fixedContent__409aa:after {
+    background: transparent;
+}
+
+.sidebar__409aa {
+    box-shadow: var(--glass-shadow);
+}
+
+.searchBar_c322aa {
+    background: transparent;
+    border: none;
+    border-radius: 13px;
+    box-shadow: var(--glass-shadow);
+}
+
+.refresh-active-now .wrapper__00943 {
+    background: transparent;
+}
+
+.refresh-active-now .itemCard__7e549 {
+    border-radius: 20px;
+    box-shadow: var(--glass-shadow);
+}
+
+.tabBar__133bf .addFriend__133bf.addFriend__133bf.addFriend__133bf {
+    background-color: var(--control-primary-background-default);
+}
+
+.applicationStore_f07d62,
+.homeWrapper__0920e {
+    background-color: transparent;
+}
+
+.productCardContainer_fcbddd {
+    background: transparent;
+    border: none;
+    border-radius: 20px;
+    box-shadow: var(--glass-shadow);
+}
+
+.theme-dark .footerGradient_fcbddd {
+    background: transparent;
+}
+
+.selectDropdown__0edde {
+    background-color: transparent;
+    border: none;
+    border-radius: 20px;
+    box-shadow: var(--glass-shadow);
+    backdrop-filter: blur(2rem);
+}
+
+div#«rsl» {
+    box-shadow: none;
+}

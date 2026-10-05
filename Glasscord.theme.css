@@ -1,0 +1,18 @@
+/**
+ * @name Glasscord
+ * @author NMWplays
+ * @version 2.0.0
+ * @description Liquid Glass inspired Discord theme — optimized for Vencord.
+ * @authorId 1041319341628592128
+ * @source https://github.com/nmwplays/Glasscord
+ * @website https://nmwplays.github.io/Glasscord/
+ * @updateUrl https://nmwplays.github.io/Glasscord/Glasscord.theme.css
+ */
+
+@import url("https://nmwplays.github.io/Glasscord/Glasscord.css");
+
+:root {
+    --blur-strength: 7px;
+    --brightness-level: 0.8;
+    --background-image: url("https://i.imgur.com/hpHXrym.png");
+}

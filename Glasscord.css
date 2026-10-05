@@ -4241,3 +4241,100 @@ body {
     border-radius: 20px;
 }
 
+
+/* =========================================================
+   GLASSCORD PERFORMANCE PATCH
+   ========================================================= */
+
+/* Much cheaper shadow */
+:root {
+    --glass-shadow:
+        0 2px 8px rgba(0, 0, 0, 0.16);
+}
+
+/* Kill expensive blur on small/repeated UI elements */
+.menu_c1e9c4::before,
+.channelHeader__35a7e::before {
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+}
+
+/* Remove hover scaling — this causes constant repainting */
+.interactive__972a0:hover,
+.clickable__91a9d .childContainer__91a9d:hover,
+.avatarWrapper__37e49:hover,
+.side_aa8da2 .themed_aa8da2.item_aa8da2:hover:not(.disabled_aa8da2),
+.topPill_aa8da2 .themed_aa8da2.item_aa8da2:hover:not(.disabled_aa8da2),
+.peopleListItem_cc6179:hover,
+.wrapper__2ea32:hover .link__2ea32,
+.listDefault__07f91 .clickable__07f91:hover .content__07f91,
+.result__71961:hover,
+.button_f563df:hover,
+.row__89036:hover,
+.row__0a95c:hover,
+.menuItemInner_ce8328:hover,
+.item_caf372.active_caf372:hover {
+    transform: none !important;
+}
+
+/* Stop animating transforms */
+.interactive__972a0,
+.clickable__91a9d .childContainer__91a9d,
+.avatarWrapper__37e49,
+.side_aa8da2 .themed_aa8da2.item_aa8da2,
+.topPill_aa8da2 .themed_aa8da2.item_aa8da2,
+.peopleListItem_cc6179,
+.wrapper__2ea32 .link__2ea32,
+.listDefault__07f91 .clickable__07f91 .content__07f91,
+.result__71961,
+.button_f563df,
+.row__89036,
+.row__0a95c,
+.menuItemInner_ce8328,
+.item_caf372 {
+    transition: none !important;
+}
+
+/* Disable Discord's expensive full-motion effects */
+.full-motion .item_aa8da2,
+.full-motion .wrapper_f7ecac,
+.theme-dark.mouse-mode.full-motion .message__5126c {
+    transition: none !important;
+}
+
+/* Reduce blur on secondary surfaces */
+.tooltipPrimary_c36707,
+.tooltip__4e35b,
+.container__8a031,
+.container_fc561d,
+.header_e8b59c,
+.container__55c99,
+.popoutContainer__0f481,
+.contentWrapper__9c62c,
+.contentWrapper__08434,
+.container__01ae2,
+.dialogWrapper_b1f768,
+.scroller_d6b206,
+.picker__09f65,
+.selectDropdown__0edde {
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+}
+
+/* Keep glass blur only on the main Discord surfaces */
+.wrapper_ef3116,
+.panels__5e434,
+.peopleColumn__133bf,
+.chatContent_f75fb0,
+.members_c8ffbb,
+.sidebarListRounded__5e434,
+.contentRegion__23e6b,
+.sidebarRegionScroller__23e6b {
+    backdrop-filter: blur(4px) !important;
+    -webkit-backdrop-filter: blur(4px) !important;
+}
+
+/* Prevent unnecessary compositor hints */
+* {
+    will-change: auto !important;
+}

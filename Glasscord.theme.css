@@ -1,18 +1,21 @@
 /**
  * @name Glasscord
  * @author NMWplays
- * @version 2.0.0
- * @description Liquid Glass inspired Discord theme — optimized for Vencord.
+ * @version 4.0.0
+ * @description Glasscord FPS Edition — lightweight glass styling for Vencord.
  * @authorId 1041319341628592128
- * @source https://github.com/nmwplays/Glasscord
- * @website https://nmwplays.github.io/Glasscord/
- * @updateUrl https://nmwplays.github.io/Glasscord/Glasscord.theme.css
+ * @source https://github.com/EnvisionRolePlay/SevenCord
+ * @website https://envisionroleplay.github.io/SevenCord/
+ * @updateUrl https://envisionroleplay.github.io/SevenCord/Glasscord.theme.css
  */
 
-@import url("https://nmwplays.github.io/Glasscord/Glasscord.css");
+@import url("https://envisionroleplay.github.io/SevenCord/Glasscord.css");
 
 :root {
-    --blur-strength: 1.5px;
-    --brightness-level: 0.8;
+    --glass-bg: rgba(18, 18, 22, 0.94);
+    --glass-bg-soft: rgba(24, 24, 29, 0.90);
+    --glass-bg-hover: rgba(42, 42, 49, 0.96);
+    --glass-border: rgba(255, 255, 255, 0.075);
+    --glass-border-strong: rgba(255, 255, 255, 0.12);
     --background-image: url("https://imgup.uk/i/EyuNw4PT.png");
 }

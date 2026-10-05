@@ -12,7 +12,7 @@
 @import url("https://nmwplays.github.io/Glasscord/Glasscord.css");
 
 :root {
-    --blur-strength: 7px;
+    --blur-strength: 1.5px;
     --brightness-level: 0.8;
     --background-image: url("https://imgup.uk/i/EyuNw4PT.png");
 }

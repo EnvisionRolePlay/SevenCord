@@ -1,292 +1,334 @@
 /*
- * GLASSCORD 3.0 — PERFORMANCE EDITION
+ * GLASSCORD 4.0 — FPS EDITION
  *
- * Design rule:
- * - No global blur
- * - No hover transforms
- * - No animated shadows
- * - No will-change
- * - No giant selector dump
- * - Blur is limited to the few surfaces that actually need it
+ * Built for Discord/Vencord performance.
+ *
+ * Intentionally contains:
+ * - NO backdrop-filter
+ * - NO -webkit-backdrop-filter
+ * - NO filter
+ * - NO will-change
+ * - NO transform animations
+ * - NO box-shadow
+ * - NO CSS animations
+ * - NO expensive hover effects
+ *
+ * The glass appearance comes from opacity, borders, gradients,
+ * and the background image only.
  */
 
 :root {
-    --glass-bg: rgba(20, 20, 24, 0.72);
-    --glass-bg-soft: rgba(20, 20, 24, 0.58);
-    --glass-border: rgba(255, 255, 255, 0.08);
-    --glass-shadow: 0 2px 10px rgba(0, 0, 0, 0.16);
+    --glass-bg: rgba(18, 18, 22, 0.94);
+    --glass-bg-soft: rgba(24, 24, 29, 0.90);
+    --glass-bg-hover: rgba(42, 42, 49, 0.96);
+    --glass-border: rgba(255, 255, 255, 0.075);
+    --glass-border-strong: rgba(255, 255, 255, 0.12);
+    --glass-text: rgba(255, 255, 255, 0.92);
+    --glass-muted: rgba(255, 255, 255, 0.58);
     --background-image: url("https://imgup.uk/i/EyuNw4PT.png");
 }
 
-/* ---------- Base ---------- */
+/* =========================================================
+   BASE
+   ========================================================= */
 
 html,
 body,
-.appMount__51fd7 {
-    background: transparent !important;
+#app-mount {
+    background: #111114 !important;
+    color: var(--glass-text) !important;
 }
 
 body {
-    background: var(--background-image) center / cover fixed no-repeat !important;
+    background-image: var(--background-image) !important;
+    background-size: cover !important;
+    background-position: center !important;
+    background-attachment: fixed !important;
 }
 
-.bg__960e4,
+/* Discord's major background layers */
+.appMount__51fd7,
 .app__160d8,
-.privateChannels_e6b769,
-.chat_f75fb0,
-.channelChatWrapper_cb9592,
-.wrapper_cb9592,
-.applicationStore_f07d62,
-.homeWrapper__0920e,
-.content__908e2,
-.panel__5dec7,
-.container__7d20c,
-.nowPlayingColumn__133bf,
-.contentRegionScroller__23e6b,
-.standardSidebarView__23e6b,
+.bg__960e4,
+.layers__160d8,
 .layer__960e4 {
     background: transparent !important;
 }
 
-/* ---------- Main glass surfaces ----------
-   Only these get blur. This is the important performance change.
-*/
+/* =========================================================
+   MAIN LAYOUT
+   ========================================================= */
 
 .wrapper_ef3116,
+.sidebarListRounded__5e434,
 .panels__5e434,
 .chatContent_f75fb0,
 .members_c8ffbb,
-.sidebarListRounded__5e434,
 .contentRegion__23e6b,
 .sidebarRegionScroller__23e6b {
     background: var(--glass-bg) !important;
-    border: 1px solid var(--glass-border) !important;
-    box-shadow: var(--glass-shadow) !important;
-    backdrop-filter: blur(4px) !important;
-    -webkit-backdrop-filter: blur(4px) !important;
+    border-color: var(--glass-border) !important;
 }
 
-/* ---------- Server / channel sidebars ---------- */
+/* Keep Discord's structural backgrounds from stacking opaque layers */
+.container__2637a,
+.container_c8ffbb,
+.container__9293f,
+.content__908e2,
+.chat__52833,
+.chatLayerWrapper__01ae2,
+.subtitleContainer_f75fb0,
+.title_f75fb0,
+.chatContent_f75fb0 {
+    background: transparent !important;
+}
+
+/* =========================================================
+   SERVER LIST
+   ========================================================= */
 
 .wrapper_ef3116 {
-    margin: 8px 8px 10px !important;
-    border-radius: 16px !important;
-    overflow: hidden;
+    background: rgba(12, 12, 15, 0.96) !important;
+    border-right: 1px solid var(--glass-border) !important;
 }
 
-.sidebarList__5e434,
-.sidebarList_c48ade,
-.privateChannels_e6b769 {
-    border-radius: 16px !important;
+.scroller_ef3116 {
+    background: transparent !important;
 }
 
-.panels__5e434,
-.panels_c48ade {
-    border-radius: 16px !important;
-    background: var(--glass-bg) !important;
+.listItem__650eb {
+    background: transparent !important;
 }
 
-.panels__5e434 {
-    left: 92px;
-    margin-bottom: 4px;
-}
-
-.searchBar__35e86,
-.searchBar_e6b769,
-.searchBar__97492,
-.searchBar_c322aa {
-    background: rgba(255, 255, 255, 0.035) !important;
+.wrapper__8436d {
+    background: var(--glass-bg-soft) !important;
     border: 1px solid var(--glass-border) !important;
-    border-radius: 12px !important;
-    box-shadow: none !important;
 }
 
-/* ---------- Main chat ---------- */
+.wrapper__8436d:hover,
+.wrapper__8436d.selected__8436d {
+    background: var(--glass-bg-hover) !important;
+}
+
+/* =========================================================
+   CHANNEL SIDEBAR
+   ========================================================= */
+
+.sidebar__5b40b,
+.container__2637a,
+.privateChannels__35e86,
+.scroller__99e7c {
+    background: rgba(20, 20, 24, 0.94) !important;
+}
+
+.header__104ca,
+.containerDefault__29444,
+.containerDragAfter__29444,
+.containerDragBefore__29444 {
+    background: transparent !important;
+}
+
+.mainContent-20q_Hp:hover,
+.modeSelected__2ea32 .link__2ea32,
+.wrapper__2ea32:hover .link__2ea32 {
+    background: var(--glass-bg-hover) !important;
+}
+
+.link__2ea32,
+.wrapper__2ea32 .link__2ea32 {
+    border-radius: 6px !important;
+}
+
+/* =========================================================
+   CHAT
+   ========================================================= */
 
 .chatContent_f75fb0 {
-    border-radius: 16px !important;
-    overflow: hidden;
+    background: rgba(17, 17, 21, 0.90) !important;
 }
 
-.content_f75fb0 {
-    margin-top: 6px;
-    margin-bottom: 6px;
+.scrollerSpacer__36d07,
+.scrollerInner__36d07 {
+    background: transparent !important;
+}
+
+.form_f75fb0 {
+    background: transparent !important;
 }
 
 .channelTextArea_f75fb0,
-.channelTextArea__74017,
-.themedBackground__74017 {
-    background: transparent !important;
-}
-
-.scrollableContainer__74017.themedBackground__74017 {
-    background: rgba(255, 255, 255, 0.035) !important;
+.scrollableContainer__74017 {
+    background: rgba(30, 30, 36, 0.96) !important;
     border: 1px solid var(--glass-border) !important;
-    border-radius: 14px !important;
-    box-shadow: none !important;
 }
 
-.messagesWrapper__36d07,
-.scroller__36d07 {
-    border-radius: 0 !important;
+.channelTextArea_f75fb0:focus-within,
+.scrollableContainer__74017:focus-within {
+    border-color: var(--glass-border-strong) !important;
 }
 
-/* ---------- Member list ---------- */
-
-.container_c8ffbb {
-    margin-left: 8px;
-    border-radius: 16px !important;
-    overflow: hidden;
-}
+/* =========================================================
+   MEMBERS / USER LISTS
+   ========================================================= */
 
 .members_c8ffbb {
-    border-radius: 16px !important;
+    background: rgba(19, 19, 23, 0.94) !important;
 }
 
-.member_c8ffbb {
+.member_c8ffbb,
+.member__5d473 {
     background: transparent !important;
 }
 
-/* Cheap hover state: background only. No scale, no shadow animation. */
-
 .member_c8ffbb:hover,
-.interactive__972a0:hover,
-.wrapper__2ea32:hover .link__2ea32,
-.side_aa8da2 .themed_aa8da2.item_aa8da2:hover:not(.disabled_aa8da2),
-.topPill_aa8da2 .themed_aa8da2.item_aa8da2:hover:not(.disabled_aa8da2) {
-    background: rgba(255, 255, 255, 0.055) !important;
+.member__5d473:hover {
+    background: var(--glass-bg-hover) !important;
 }
 
-/* ---------- Selected channels / navigation ---------- */
+/* =========================================================
+   USER / APP PANELS
+   ========================================================= */
 
-.modeSelected__2ea32 .link__2ea32,
-.modeSelected__2ea32:hover .link__2ea32,
-.side_aa8da2 .themed_aa8da2.selected_aa8da2.item_aa8da2,
-.topPill_aa8da2 .themed_aa8da2.selected_aa8da2.item_aa8da2 {
-    background: rgba(255, 255, 255, 0.075) !important;
-    border-radius: 10px !important;
-    box-shadow: none !important;
+.panels__5e434 {
+    background: rgba(16, 16, 20, 0.97) !important;
+    border-top: 1px solid var(--glass-border) !important;
 }
 
-.wrapper__2ea32 .link__2ea32,
-.side_aa8da2 .themed_aa8da2.item_aa8da2,
-.topPill_aa8da2 .themed_aa8da2.item_aa8da2 {
-    border-radius: 10px !important;
-    transition: background-color 0.12s ease !important;
+.container__37e49,
+.panel__5e434 {
+    background: transparent !important;
 }
 
-/* ---------- Buttons ---------- */
-
-button.button__67645,
-span.button__67645,
-.button_e131a9 .buttonColor_e131a9,
-.button_e131a9.buttonColor_e131a9,
-.lookFilled__201d5.colorPrimary__201d5,
-.lookFilled__201d5.colorBrand__201d5,
-.primary_a22cb0,
-.secondary_a22cb0 {
-    border-radius: 10px !important;
+.button_f563df:hover,
+.button__67645:hover {
+    background: var(--glass-bg-hover) !important;
 }
 
-.lookFilled__201d5.colorPrimary__201d5 {
-    background: rgba(255, 255, 255, 0.055) !important;
-    box-shadow: none !important;
+/* =========================================================
+   DMs / FRIENDS
+   ========================================================= */
+
+.privateChannels__35e86,
+.peopleColumn__133bf,
+.nowPlayingColumn__133bf,
+.peopleList__5ec2f {
+    background: rgba(18, 18, 22, 0.94) !important;
 }
 
-/* ---------- Menus / popouts ----------
-   Solid translucent background instead of per-menu backdrop blur.
-*/
+.peopleListItem_cc6179:hover {
+    background: var(--glass-bg-hover) !important;
+}
+
+/* =========================================================
+   SEARCH
+   ========================================================= */
+
+.searchBar__97492,
+.searchBar_e6b769 {
+    background: rgba(35, 35, 41, 0.96) !important;
+    border: 1px solid var(--glass-border) !important;
+}
+
+.searchBar__97492:focus-within,
+.searchBar_e6b769:focus-within {
+    border-color: var(--glass-border-strong) !important;
+}
+
+/* =========================================================
+   MENUS / POPOUTS / TOOLTIPS
+   IMPORTANT: solid-ish backgrounds instead of blur.
+   ========================================================= */
 
 .menu_c1e9c4,
-.messagesPopoutWrap_e8b59c,
-.outer_c0bea0,
-.outer_ab8609,
+.menu__088f7,
+.popout_f6639,
 .popout__3f413,
-.popoutContainer__0f481,
-.contentWrapper__9c62c,
-.contentWrapper__08434,
-.dialogWrapper_b1f768 {
-    background: rgba(18, 18, 22, 0.96) !important;
-    border: 1px solid var(--glass-border) !important;
-    border-radius: 14px !important;
-    box-shadow: 0 4px 18px rgba(0, 0, 0, 0.22) !important;
+.container__55c1b,
+.tooltip__013f3,
+.autocomplete__13533,
+.layerContainer__59d0d,
+.quickswitcher_f4e139,
+.container__55c1b {
+    background: rgba(24, 24, 29, 0.985) !important;
+    border: 1px solid var(--glass-border-strong) !important;
+    box-shadow: none !important;
     backdrop-filter: none !important;
     -webkit-backdrop-filter: none !important;
 }
 
-.menu_c1e9c4::before,
-.channelHeader__35a7e::before {
-    display: none !important;
+.menuItem_ce8328:hover,
+.item_c1e9c4:hover,
+.colorDefault_c1e9c4:hover,
+.result__71961:hover {
+    background: var(--glass-bg-hover) !important;
 }
 
-/* ---------- Tooltips ---------- */
+/* =========================================================
+   MODALS
+   ========================================================= */
 
-.tooltipPrimary_c36707,
-.tooltip__4e35b {
-    background: rgba(18, 18, 22, 0.96) !important;
-    border-radius: 10px !important;
-    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.20) !important;
-    backdrop-filter: none !important;
-    -webkit-backdrop-filter: none !important;
+.backdrop__78332 {
+    background: rgba(0, 0, 0, 0.68) !important;
 }
 
-/* ---------- Cards / settings ---------- */
-
-.card__6df1a,
-.card__5cea9,
-.accountProfileCard__1fed1,
-.background__1fed1,
-.credentialList__6c75d,
-.container__35859,
-.container__8279f,
-.container__3f864,
-.container__5573a,
-.container__62dd3,
-.exampleMessage__6c253,
-.vc-card-base {
-    background: var(--glass-bg-soft) !important;
-    border: 1px solid var(--glass-border) !important;
-    border-radius: 14px !important;
-    box-shadow: var(--glass-shadow) !important;
-}
-
-/* ---------- Inputs ---------- */
-
-.input_ac6cb0,
-.input__0f084,
-.input__0ed4f,
-.copyInput_fffc15 {
-    background: rgba(0, 0, 0, 0.16) !important;
-    border: 1px solid var(--glass-border) !important;
-    border-radius: 10px !important;
+.root__49fc18,
+.modal__0600c,
+.modalSize__6f1c4,
+.container__7d20c {
+    background: rgba(22, 22, 27, 0.985) !important;
+    border: 1px solid var(--glass-border-strong) !important;
     box-shadow: none !important;
 }
 
-/* ---------- Media ---------- */
-
-.pictureInPictureVideo_e4cb9a,
-.mosaicItemMediaMosaic__6c706,
-.imageWrapper_af017a,
-.contentImage_ef9ae7,
-.gameCover__1a3d6 {
-    border-radius: 12px !important;
+.footer__89240,
+.header__6d44c {
+    background: transparent !important;
 }
 
-/* ---------- Text ---------- */
+/* =========================================================
+   SETTINGS
+   ========================================================= */
 
-:root {
-    --text-muted: #b5bac1;
-    --text-secondary: #dbdee1;
+.standardSidebarView__23e6b,
+.contentRegion__23e6b,
+.contentRegionScroller__23e6b,
+.sidebarRegion__23e6b {
+    background: rgba(18, 18, 22, 0.96) !important;
 }
 
-.emptyText__7e549,
-.unicodeShortcut_b9ee0c {
-    color: #fff;
+.side_aa8da2 .item_aa8da2:hover,
+.side_aa8da2 .item_aa8da2.selected_aa8da2,
+.topPill_aa8da2 .item_aa8da2:hover,
+.topPill_aa8da2 .item_aa8da2.selected_aa8da2 {
+    background: var(--glass-bg-hover) !important;
 }
 
-/* ---------- Performance kill-switch ----------
-   These override expensive rules inherited from Discord/theme leftovers.
-*/
+/* =========================================================
+   INPUTS / BUTTONS
+   ========================================================= */
+
+.input__0f084,
+.inputDefault__0f084,
+.textarea__1bdb4,
+.select__3f413,
+.lookFilled__201d5 {
+    background: rgba(30, 30, 36, 0.96) !important;
+    border-color: var(--glass-border) !important;
+}
+
+.input__0f084:focus,
+.inputDefault__0f084:focus,
+.textarea__1bdb4:focus {
+    border-color: var(--glass-border-strong) !important;
+}
+
+.lookFilled__201d5:hover {
+    background: var(--glass-bg-hover) !important;
+}
+
+/* =========================================================
+   REMOVE EXPENSIVE EFFECTS FROM THEME / DISCORD SURFACES
+   ========================================================= */
 
 *,
 *::before,
@@ -294,49 +336,58 @@ span.button__67645,
     will-change: auto !important;
 }
 
-.interactive__972a0,
-.clickable__91a9d .childContainer__91a9d,
-.avatarWrapper__37e49,
-.wrapper__2ea32 .link__2ea32,
-.side_aa8da2 .themed_aa8da2.item_aa8da2,
-.topPill_aa8da2 .themed_aa8da2.item_aa8da2,
-.peopleListItem_cc6179,
-.listDefault__07f91 .clickable__07f91 .content__07f91,
-.result__71961,
-.button_f563df,
-.row__89036,
-.row__0a95c,
-.menuItemInner_ce8328,
-.item_caf372,
-.colorDefault_c1e9c4 {
-    transition: background-color 0.12s ease !important;
-    transform: none !important;
-}
-
+/* No scale/translate animations from the theme */
+.wrapper__2ea32:hover,
+.wrapper__2ea32:active,
 .interactive__972a0:hover,
-.clickable__91a9d:hover .childContainer__91a9d,
 .avatarWrapper__37e49:hover,
 .peopleListItem_cc6179:hover,
-.listDefault__07f91 .clickable__07f91:hover .content__07f91,
-.result__71961:hover,
 .button_f563df:hover,
-.row__89036:hover,
-.row__0a95c:hover,
-.menuItemInner_ce8328:hover,
-.item_caf372:hover,
-.colorDefault_c1e9c4:hover {
+.result__71961:hover {
     transform: none !important;
-    box-shadow: none !important;
 }
 
-/* Disable expensive full-motion theme animations. */
-.full-motion .item_aa8da2,
-.full-motion .wrapper_f7ecac,
-.theme-dark.mouse-mode.full-motion .message__5126c {
-    transition: none !important;
+/* Cheap transitions only */
+.wrapper__2ea32 .link__2ea32,
+.interactive__972a0,
+.peopleListItem_cc6179,
+.button_f563df,
+.result__71961,
+.menuItem_ce8328,
+.item_c1e9c4,
+.colorDefault_c1e9c4 {
+    transition: background-color 0.08s linear !important;
 }
 
-/* Respect system reduced motion. */
+/* Kill theme animations without touching Discord's required layout */
+[style*="backdrop-filter"],
+[style*="backdrop-filter:"] {
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+}
+
+/* =========================================================
+   TEXT
+   ========================================================= */
+
+body,
+button,
+input,
+textarea {
+    color: var(--glass-text) !important;
+}
+
+.text-muted,
+.text-xs-normal,
+.text-sm-normal,
+.text-sm-medium {
+    color: var(--glass-muted) !important;
+}
+
+/* =========================================================
+   ACCESSIBILITY / REDUCED MOTION
+   ========================================================= */
+
 @media (prefers-reduced-motion: reduce) {
     *,
     *::before,
@@ -344,22 +395,6 @@ span.button__67645,
         animation: none !important;
         transition: none !important;
         scroll-behavior: auto !important;
+        transform: none !important;
     }
 }
-
-/* ---------- Optional: zero-blur emergency mode ----------
-   Uncomment this if Discord is still struggling.
-*/
-
-/*
-.wrapper_ef3116,
-.panels__5e434,
-.chatContent_f75fb0,
-.members_c8ffbb,
-.sidebarListRounded__5e434,
-.contentRegion__23e6b,
-.sidebarRegionScroller__23e6b {
-    backdrop-filter: none !important;
-    -webkit-backdrop-filter: none !important;
-}
-*/
